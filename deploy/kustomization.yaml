@@ -5,7 +5,3 @@ resources:
 - ing.yaml
 - sa.yaml
 - service.yaml
-images:
-- name: yeti
-  newName: public.ecr.aws/a2k4d8v8/yeti
-  newTag: 0.0.2

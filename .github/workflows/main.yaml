@@ -1,0 +1,64 @@
+on:
+  push:
+    branches:
+    - main
+
+name: Build and Push an Image to ECR
+
+env:
+  AWS_DEFAULT_REGION: us-west-2
+  AWS_DEFAULT_OUTPUT: json
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  ECR_URI: public.ecr.aws/a2k4d8v8
+  CONTAINER_IMAGE: yeti:${{ github.sha }}
+
+jobs:
+  build-and-push:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@master
+
+    # Add steps here like linting, testing, minification, etc.
+      
+    - name: Setup ECR
+      run: |
+        # Login to AWS ECR
+        $( aws ecr get-login --no-include-email )
+    - name: Build and tag the image
+      run: |
+        # Build and tag the image
+        docker build \
+          -t $CONTAINER_IMAGE \
+          -t $ECR_URI/$CONTAINER_IMAGE .
+ 
+    # Set image tag in kustomization
+
+    - name: Set image tag
+      run: |
+          cd deploy
+          kustomize edit set image $ECR_URI/$CONTAINER_IMAGE
+          cat kustomization.yaml
+    - name: Commit kustomization
+      run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -a -m "$CONTAINER_IMAGE"
+    - name: Push changes to main
+      uses: ad-m/github-push-action@master
+      with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          force: true       
+    
+    # Add additional steps here like scanning of image
+
+    # Only push to registry on main
+    - name: Push
+      if: github.ref == 'refs/heads/main'
+      run: |
+        # Push image to AWS ECR
+        docker push $ECR_URI/$CONTAINER_IMAGE
