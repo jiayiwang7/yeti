@@ -5,3 +5,6 @@ resources:
 - ing.yaml
 - sa.yaml
 - service.yaml
+images:
+- name: public.ecr.aws/a2k4d8v8/yeti
+  newTag: c1c0c79729b4a8ce5ed8875f720dc348a250fb47
