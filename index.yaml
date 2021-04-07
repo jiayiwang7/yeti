@@ -1,0 +1,19 @@
+apiVersion: v1
+entries:
+  yeti:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2021-04-07T12:53:20.19026-07:00"
+    description: A Helm chart for Yeti Demo Project
+    digest: a433ccb322f24e0ac03b22613452289d327793493288f952760682a6fcaa45a8
+    maintainers:
+    - email: joey@butlr.tech
+      name: Joey Wang
+    name: yeti
+    sources:
+    - https://github.com/butlrtechnologies/yeti
+    type: application
+    urls:
+    - https://jiayiwang7.github.io/yeti/yeti-0.0.1.tgz
+    version: 0.0.1
+generated: "2021-04-07T12:53:20.189246-07:00"
