@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: yeti
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: yeti
+          servicePort: 80
+        path: /yeti

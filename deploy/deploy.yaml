@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yeti
+  labels:
+    app: yeti
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yeti
+  template:
+    metadata:
+      labels:
+        app: yeti
+    spec:
+      serviceAccountName: yeti
+      containers:
+        - name: yeti
+          image: yeti:0.0.2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
