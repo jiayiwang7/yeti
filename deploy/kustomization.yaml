@@ -7,4 +7,4 @@ resources:
 - service.yaml
 images:
 - name: 768972016120.dkr.ecr.us-west-2.amazonaws.com/yeti
-  newTag: e82756e39bd6a5fdd16e10ecbff8512bf9f0652f
+  newTag: 5342da681ab092f41365f99570e23acfa585f018
