@@ -1,5 +1,7 @@
 on:
   push:
+    paths:
+    - "**/*.vue"
     branches:
     - main
 

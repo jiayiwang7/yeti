@@ -17,7 +17,7 @@ spec:
       serviceAccountName: yeti
       containers:
         - name: yeti
-          image: public.ecr.aws/a2k4d8v8/yeti:0.0.2
+          image: 768972016120.dkr.ecr.us-west-2.amazonaws.com/yeti:0.0.1
           imagePullPolicy: Always
           ports:
             - name: http
