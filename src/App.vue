@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Flux is complicated!</h1>
+    <h1>Flux is awesome!</h1>
     <h2>Count: {{ count }}</h2>
     <button
       class="button button--decrement"
